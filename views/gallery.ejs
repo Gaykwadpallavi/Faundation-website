@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <%- include('../partials/links')  %>
+  <style>
+    #img{
+      min-height: 200px;
+      /* max-height: 200px; */
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ======= Header ======= -->
+  <%- include('../partials/navbar')  %>
+ 
+ <h1 id="heading"></h1>
+  <main id="main">
+
+   
+    <section class="portfolio">
+      <div class="container">
+
+        
+
+        <div class="row portfolio-container" data-aos="fade-up" data-aos-easing="ease-in-out" data-aos-duration="500">
+       
+          
+
+          <%obj.forEach((data)=>{%>
+            <div class="col-lg-4 col-md-6 portfolio-wrap">
+              <div class="portfolio-item">
+                <img src=<%="http://localhost:3000/"+`${data.image}`%> id="img" class="img-fluid" alt="">
+                <div class="portfolio-info">
+                  <h3><%= data.cat%></h3>
+                  <div>
+                    <a href=<%="http://localhost:3000/"+`${data.image}`%> data-gallery="portfolio-Gallery" class="portfolio-lightbox" title="<%= data.cat%>"><i class="fa-solid fa-expand"></i></a>
+                    <!-- <a href="portfolio-details.html" title="Portfolio Details"><i class="bx bx-link"></i></a> -->
+                  </div>
+                </div>
+              </div>
+            </div>
+            <%})%>
+         
+
+        </div>
+
+      </div>
+    </section><!-- End Portfolio Section -->
+
+  </main><!-- End #main -->
+
+  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+  <%- include('../partials/footer')  %>
+
+  <!-- Vendor JS Files -->
+  <%- include('../partials/scripts')  %>
+<script>
+  const heading =document.getElementById('heading');
+  // heading.innerHTML={{abc}}
+</script>
+  <!-- Template Main JS File -->
+  
+
+</body>
+
+</html>

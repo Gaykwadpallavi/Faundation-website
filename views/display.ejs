@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <% include('../partials/links')%>
+    <link href="/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+<style>
+  .img{
+    height: 300px;
+    width: 100%;
+    border: 1px solid;
+  }
+  .img img{
+    height: 250px;
+    width: 80%;
+    border: 1px solid;
+    margin-left: 10px;
+  }
+  .img1{
+    margin-top: 10px;
+    height: 300px;
+    width: 100%;
+    border: 1px solid;
+    
+  }
+  .img1 img{
+    margin-top: 10px;
+    height: 250px;
+    width: 80%;
+    border: 1px solid;
+    margin-left: 10px;
+  }
+</style></head>
+<body>
+
+    <div class="container">
+        <div class="row">
+          
+            <div class="col">
+                <!-- <h2>Personal Information:</h2`> -->
+                <form action="/admin/admin_route/display/display" method="post">
+                  
+                    <div class="form-row">
+                      
+                      <div class="form-group col-md-6">
+                        <label for="inputEmail4">Enter Email</label>
+                        <input type="email" name="email" class="form-control">
+                        <input type="submit" name="" id="" value="Search" class="btn btn-dark">
+                      </div>
+                      <%if(details!=''&& images!=''){%>
+                      <div class="form-group col-md-6">
+                        <label for="inputEmail4">Name</label>
+                        <span for="" class="form-control flabel label-default"id="id"><%= details.firstname%> <%= details.lastname%></span>
+                      </div>
+                      <div class="form-group col-md-6">
+                        <label for="inputPassword4">Father's Name</label>
+                        <span for="" class="form-control flabel label-default"id="id"><%= details.fathersname%></span>
+                      </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                          <label for="inputEmail4">date of birth</label>
+                          <span for="" class="form-control flabel label-default"id="id"><%= details.dob%></span>
+                        </div>
+                        <div class="form-group col-md-6">
+                          <label for="inputPassword4">gender</label>
+                          <span for="" class="form-control flabel label-default"id="id"><%= details.gender%></span>
+                        </div>
+                      </div>
+                      <div class="form-row">
+                        <div class="form-group col-md-6">
+                          <label for="inputEmail4">maretial status</label>
+                          <span for="" class="form-control flabel label-default"id="id"><%= details.maritialstatus%></span>
+                        </div>
+                        <div class="form-group col-md-6">
+                          <label for="inputPassword4">anual income</label>
+                          <span for="" class="form-control flabel label-default"id="id"><%= details.annualincome%></span>
+                        </div>
+                      </div>
+                      <div class="form-row">
+                        <div class="form-group col-md-6">
+                          <label for="inputEmail4">contact no.</label>
+                          <span for="" class="form-control flabel label-default"id="id"><%= details.contact%></span>
+                        </div>
+                        <div class="form-group col-md-6">
+                          <label for="inputPassword4">2.contact no.</label>
+                          <span for="" class="form-control flabel label-default"id="id"><%= details.alternatecontact%></span>
+                        </div>
+                      </div>
+                    <div class="form-group">
+                      <label for="inputAddress">Address</label>
+                      <span for="" class="form-control flabel label-default"id="id"><%= details.localaddress%></span>
+                    </div>
+                    <div class="form-group">
+                      <label for="inputAddress2">Address 2</label>
+                      <span for="" class="form-control flabel label-default"id="id"><%= details.permanentaddress%></span>
+                    </div>
+                    <div class="table-responsive">
+                        <!-- <caption><h2>Qualifications:</h2></caption> -->
+                    <table class="table">
+                        <thead>
+                          <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">bord</th>
+                            <th scope="col">passing year</th>
+                            <th scope="col">institute</th>
+                            <th scope="col">percentages</th>
+                          </tr>
+                        </thead>
+                        <!-- <tbody>
+                          <tr>
+                            <th scope="row">10th board</th>
+                            <td><%= details.qualification10.board%></td>
+                            <td><%= details.qualification10.pass%></td>
+                            <td><%= details.qualification10.school%></td>
+                            <td><%= details.qualification10.per%>%</td>
+                          </tr>
+                          <tr>
+                            <th scope="row">12th board</th>
+                            <td><%= details.qualification12.board%></td>
+                            <td><%= details.qualification12.pass%></td>
+                            <td><%= details.qualification12.school%></td>
+                            <td><%= details.qualification12.per%>%</td>
+                          </tr>
+                          <tr>
+                            <th scope="row">Under graduation</th>
+                            <td><%= details.qualificationUG.board%></td>
+                            <td><%= details.qualificationUG.pass%></td>
+                            <td><%= details.qualificationUG.school%></td>
+                            <td><%= details.qualificationUG.per%>%</td>
+                          
+                            
+                          </tr>   
+                          <tr>
+                            <th scope="row">Post Graduation</th>
+                            <td><%= details.qualificationPG.board%></td>
+                            <td><%= details.qualificationPG.pass%></td>
+                            <td><%= details.qualificationPG.school%></td>
+                            <td><%= details.qualificationPG.per%>%</td>
+                             </tr>                                                                                                                                                                                                                  
+                        </tbody> -->
+                      </table>
+                    </div>     
+                  </form>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+      <div class="row">
+        <label  class="form-label">Q1 What other courses are you doing right now?</label>
+       <label class="form-label form-control"><%= details.q1%></label>
+       <label  class="form-label">Q2 What is your ambition in next five years?</label>
+       <label class="form-label form-control"><%= details.q2%></label>
+       <label  class="form-label">Q3 Why do you want to pursue your career in I.T. sector? Narrate an incident which made you to decide to be in the sector</label>
+       <label class="form-label form-control"><%= details.q3%></label>
+       <label  class="form-label">Q4 Write about yourself and your company?</label>
+       <label class="form-label form-control"><%= details.q4%></label>
+       <label  class="form-label">Q5 Write your commitments in the family and expectations your parents?</label>
+       <label class="form-label form-control"><%= details.q5%></label>
+        
+</div>
+      </div>
+    </div>
+    <div class="CONTAINER">
+      <div class="row" style="margin: buttom 10px;">
+<div class="col-md-3 img"> <img src=<%="http://localhost:3000/"+`${image.pic}`%> alt=""></div>
+<div class="col-md-3  img"><img src=<%="http://localhost:3000/"+`${image.adhaarpic}`%> alt=""></div>
+<div class="col-md-3  img"><img src=<%="http://localhost:3000/"+`${image.fadhaarpic}`%> alt=""></div>
+<div class="col-md-3  img"><img src=<%="http://localhost:3000/"+`${image.marksheet12}`%> alt=""></div>
+</div>
+<div class="row">
+<div class="col-md-4 img1"><img src=<%="http://localhost:3000/"+`${image.passoutrecently}`%> alt=""></div>
+<div class="col-md-4 img1"><img src=<%="http://localhost:3000/"+`${image.samagraid}`%> alt=""></div>
+<div class="col-md-4 img1"><img src=<%="http://localhost:3000/"+`${image.incomecertificate}`%> alt=""></div>
+<%}%>
+</div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct" crossorigin="anonymous"></script>
+  
+</body>
+</html>

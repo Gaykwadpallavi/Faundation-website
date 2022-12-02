@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
+    />
+    <title>Document</title>
+    <style>
+        .container{
+             border: 2px solid; 
+            box-shadow: 10% 10% 10% black;
+            background-color: rgb(224, 126, 126);
+        }
+        body{
+          background-color: rgb(184, 23, 23);
+          /* background-image: url("/cloud.webp"); */
+          background-repeat: no-repeat;
+          background-position-x: center;
+        }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <fieldset>
+        <legend>
+          <center><h1><b>ITEP Regestration Form</b></h1></center>
+        </legend>
+      </fieldset>
+      <div class="row">
+        <div class="col-md-4">
+          <fieldset>
+            <legend>
+              <h3><b>Personal Information</b></h3>
+            </legend>
+            <form action="">
+              <div class="form-group row">
+                <label for="" class="col-sm-4 col-form-label">Name </label>
+                <div class="col-sm-6">
+                  <input
+                    type="text"
+                    class="form-control"
+                    id=""
+                    placeholder=""
+                  />
+                </div>
+              </div>
+              <div class="form-group row">
+                <label for="" class="col-sm-4 col-form-label"
+                  >Father Name</label
+                >
+                <div class="col-sm-6">
+                  <input
+                    type="text"
+                    class="form-control"
+                    id=""
+                    placeholder=""
+                  />
+                </div>
+              </div>
+              <div class="form-group row">
+                <label for="" class="col-sm-4 col-form-label"
+                  >Mother Name</label
+                >
+                <div class="col-sm-6">
+                  <input
+                    type="text"
+                    class="form-control"
+                    id=""
+                    placeholder=""
+                  />
+                </div>
+              </div>
+              <div class="form-group row">
+                <label for="" class="col-sm-4 col-form-label"
+                  >Date Of Birth</label
+                >
+                <div class="col-sm-6">
+                  <input
+                    type="date"
+                    class="form-control"
+                    id=""
+                    placeholder=""
+                  />
+                </div>
+              </div>
+              <div class="form-group row">
+                <label for="" class="col-sm-4 col-form-label">Gender</label>
+                <div class="col-sm-6">
+                  <!-- <input type="radio" class="form-control" id="" placeholder=""> -->
+                  <input type="radio" id="male" name="gender" />
+                  <label for="male">Male</label>
+                  <input type="radio" id="female" name="gender" />
+                  <label for="female">Female</label>
+                </div>
+              </div>
+            </form>
+          </fieldset>
+        </div>
+        <div class="col-md-4">
+          <fieldset>
+            <legend>
+              <h3><b>&nbsp</b></h3>
+            </legend>
+            <form action="">
+              <div class="form-group row">
+                <label for="" class="col-sm-4 col-form-label">Category</label>
+                <div class="col-sm-6">
+                  <select class="custom-select">
+                    <option selected>select your Category</option>
+                    <option value="1">general</option>
+                    <option value="2">obc</option>
+                    <option value="3">st</option>
+                    <option value="4">sc</option>
+                  </select>
+                </div>
+              </div>
+              <div class="form-group row">
+                <label for="" class="col-sm-4 col-form-label"
+                  >Father Occup
+                </label>
+                <div class="col-sm-6">
+                  <input
+                    type="number"
+                    class="form-control"
+                    id=""
+                    placeholder=""
+                  />
+                </div>
+              </div>
+              <div class="form-group row">
+                <label for="" class="col-sm-4 col-form-label"
+                  >Mother Occup</label
+                >
+                <div class="col-sm-6">
+                  <input
+                    type="number"
+                    class="form-control"
+                    id=""
+                    placeholder=""
+                  />
+                </div>
+              </div>
+              <div class="form-group row">
+                <label for="" class="col-sm-4 col-form-label"
+                  >Annual Income
+                </label>
+                <div class="col-sm-6">
+                  <input
+                    type="number"
+                    class="form-control"
+                    id=""
+                    placeholder=""
+                  />
+                </div>
+              </div>
+              <div class="form-group row">
+                <label for="" class="col-sm-4 col-form-label"
+                  >Maritial Status
+                </label>
+                <div class="col-sm-6">
+                  <select class="custom-select">
+                    <option selected>Please select</option>
+                    <option value="1">married</option>
+                    <option value="2">Unmarried</option>
+                  </select>
+                </div>
+              </div>
+            </form>
+          </fieldset>
+        </div>
+        <div class="col-md-4">
+          <form action="">
+            <img id="img" src="logo1.jpg" height="250" width="250" style="margin-top: 60px;" alt="" />
+            <input id="filee" type="file" accept="image/png, image/jpeg"> 
+          </form>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <fieldset>
+            <form action="">
+              <legend>
+                <h3><b>Qualifications</b></h3>
+              </legend>
+              <div class="form-group row">
+                <label for="" class="col-sm-2 col-form-label">10th </label>
+                <div class="col-sm-2">
+                  <input
+                    type="text"
+                    class="form-control"
+                    id=""
+                    placeholder="Enter Board"
+                  /><br>
+                </div>
+                <div class="col-sm-2">
+                  <input
+                    type="text"
+                    class="form-control"
+                    id=""
+                    placeholder="Enter School name"
+                  /><br>
+                </div>
+                <div class="col-sm-2">
+                  <input
+                    type="number"
+                    class="form-control"
+                    id=""
+                    placeholder="Enter passing year"
+                  /><br>
+                </div>
+                <div class="col-sm-2">
+                  <input
+                    type="number"
+                    class="form-control"
+                    id=""
+                    placeholder="Enter Percentage"
+                  />
+                </div>
+              </div>
+              <div class="form-group row">
+                <label for="" class="col-sm-2 col-form-label">12th </label>
+                <div class="col-sm-2">
+                  <input
+                    type="text"
+                    class="form-control"
+                    id=""
+                    placeholder="Enter Board"
+                  /><br>
+                </div>
+                <div class="col-sm-2">
+                  <input
+                    type="text"
+                    class="form-control"
+                    id=""
+                    placeholder="Enter School name"
+                  /><br>
+                </div>
+                <div class="col-sm-2">
+                  <input
+                    type="number"
+                    class="form-control"
+                    id=""
+                    placeholder="Enter passing year"
+                  /><br>
+                </div>
+                <div class="col-sm-2">
+                  <input
+                    type="number"
+                    class="form-control"
+                    id=""
+                    placeholder="Enter Percentage"
+                  />
+                </div>
+              </div>
+              <div class="form-group row">
+                <label for="" class="col-sm-2 col-form-label"
+                  >Bachelor's Degree
+                </label>
+                <div class="col-sm-2">
+                  <input
+                    type="text"
+                    class="form-control"
+                    id=""
+                    placeholder="Enter University"
+                  /><br>
+                </div>
+                <div class="col-sm-2">
+                  <input
+                    type="text"
+                    class="form-control"
+                    id=""
+                    placeholder="Enter School name"
+                  /><br>
+                </div>
+                <div class="col-sm-2">
+                  <input
+                    type="number"
+                    class="form-control"
+                    id=""
+                    placeholder="Enter passing year"
+                  /><br>
+                </div>
+                <div class="col-sm-2">
+                  <input
+                    type="number"
+                    class="form-control"
+                    id=""
+                    placeholder="Enter Percentage"
+                  />
+                </div>
+              </div>
+              <div class="form-group row">
+                <label for="" class="col-sm-2 col-form-label"
+                  >Master's Degree
+                </label>
+                <div class="col-sm-2">
+                  <input
+                    type="text"
+                    class="form-control"
+                    id=""
+                    placeholder="Enter University"
+                  /><br>
+                </div>
+                <div class="col-sm-2">
+                  <input
+                    type="text"
+                    class="form-control"
+                    id=""
+                    placeholder="Enter School name"
+                  /><br>
+                </div>
+                <div class="col-sm-2">
+                  <input
+                    type="number"
+                    class="form-control"
+                    id=""
+                    placeholder="Enter passing year"
+                  /><br>
+                </div>
+                <div class="col-sm-2">
+                  <input
+                    type="number"
+                    class="form-control"
+                    id=""
+                    placeholder="Enter Percentage"
+                  />
+                </div>
+              </div>
+            </form>
+          </fieldset>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-4">
+          <fieldset>
+            <legend>
+              <h3><b>Contact Details</b></h3>
+            </legend>
+            <form action="">
+              <div class="form-group row">
+                <label for="" class="col-sm-4 col-form-label"
+                  >Email Address</label
+                >
+                <div class="col-sm-6">
+                  <input
+                    type="email"
+                    class="form-control"
+                    id=""
+                    placeholder="Enter email address"
+                  />
+                </div>
+              </div>
+              <div class="form-group row">
+                <label for="" class="col-sm-4 col-form-label"
+                  >Contact Number</label
+                >
+                <div class="col-sm-6">
+                  <input
+                    type="number"
+                    class="form-control"
+                    id=""
+                    placeholder="Enter Contact Number"
+                  />
+                </div>
+              </div>
+              <div class="form-group row">
+                <label for="" class="col-sm-4 col-form-label"
+                  >Alternate Contact Number</label
+                >
+                <div class="col-sm-6">
+                  <input
+                    type="number"
+                    class="form-control"
+                    id=""
+                    placeholder="Enteralternate Contact Number"
+                  />
+                </div>
+              </div>
+            </form>
+          </fieldset>
+        </div>
+        <div class="col-md-4">
+          <fieldset>
+            <legend>
+              <h3><b>Address Information</b></h3>
+            </legend>
+            <form action="">
+              <div class="form-group row">
+                <label for="" class="col-sm-4 col-form-label"
+                  >Local Address</label
+                >
+                <div class="col-sm-6">
+                  <input
+                    type="text"
+                    class="form-control"
+                    id=""
+                    placeholder="Enter Local address"
+                  />
+                </div>
+              </div>
+              <div class="form-group row">
+                <label for="" class="col-sm-4 col-form-label">city</label>
+                <div class="col-sm-6">
+                  <input
+                    type="text"
+                    class="form-control"
+                    id=""
+                    placeholder="Enter city"
+                  />
+                </div>
+              </div>
+              <div class="form-group row">
+                <label for="" class="col-sm-4 col-form-label">State</label>
+                <div class="col-sm-6">
+                  <input
+                    type="text"
+                    class="form-control"
+                    id=""
+                    placeholder="Enter state"
+                  />
+                </div>
+              </div>
+              <div class="form-group row">
+                <label for="" class="col-sm-4 col-form-label">Pincode</label>
+                <div class="col-sm-6">
+                  <!-- <input type="radio" class="form-control" id="" placeholder=""> -->
+                  <input
+                    type="number"
+                    class="form-control"
+                    id=""
+                    placeholder="Enter pincode"
+                  />
+                </div>
+              </div>
+            </form>
+          </fieldset>
+        </div>
+        <div class="col-md-4">
+            <fieldset>
+              <legend>
+                <h3><b>&nbsp</b></h3>
+              </legend>
+              <form action="">
+                <div class="form-group row">
+                  <label for="" class="col-sm-4 col-form-label"
+                    >Permanent Address</label
+                  >
+                  <div class="col-sm-6">
+                    <input
+                      type="text"
+                      class="form-control"
+                      id=""
+                      placeholder="Enter permanent address"
+                    />
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label for="" class="col-sm-4 col-form-label">city</label>
+                  <div class="col-sm-6">
+                    <input
+                      type="text"
+                      class="form-control"
+                      id=""
+                      placeholder="Enter city"
+                    />
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label for="" class="col-sm-4 col-form-label">State</label>
+                  <div class="col-sm-6">
+                    <input
+                      type="text"
+                      class="form-control"
+                      id=""
+                      placeholder="Enter state"
+                    />
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label for="" class="col-sm-4 col-form-label">Pincode</label>
+                  <div class="col-sm-6">
+                    <!-- <input type="radio" class="form-control" id="" placeholder=""> -->
+                    <input
+                      type="number"
+                      class="form-control"
+                      id=""
+                      placeholder="Enter pincode"
+                    />
+                  </div>
+                </div>
+              </form>
+            </fieldset>
+          </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <h3><b>Write about yourself and your family</b></h3>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+         <textarea rows="3" name="" style="width: 100%;" id="" cols="30" rows="10"></textarea>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <h3><b>What is your ambition in next five years?</b></h3>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+         <textarea rows="3" name="" style="width: 100%;" id="" cols="30" rows="10"></textarea>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <h3><b>What other courses are you doing right now?</b></h3>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+         <textarea rows="3" name="" style="width: 100%;" id="" cols="30" rows="10"></textarea>
+        </div>
+      </div>
+      <div class="row">
+        <center><button class="btn btn-primary">Proceed</button></center>
+      </div>
+    </div>
+    <script>
+        console.log("hello");
+        document.querySelector('input[type=file]').value='foo'
+        console.log(document.querySelector('input[type=file]').value);
+    </script>
+  </body>
+</html>

@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <link href="/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+      .bgup{
+        background: linear-gradient(180deg,#ab2330,black,#ab2330);
+        color: white;
+      }
+      body{
+        /* background-color: black; */
+      }
+    </style>
+  </head>
+  <body>
+    <%if(success.length>0){%>
+      <div class="alert alert-success alert-dismissible fade show">
+        <%= success%>
+      </div>
+    <%}%>
+    <%if(failure.length>0){%>
+      <div class="alert alert-success alert-dismissible fade show">
+        <%= failure%>
+      </div>
+    <%}%>
+    
+    <!-- <div class="row">
+      <ul class="nav justify-content-center">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="#new-registration">New Registration</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#upload-image">uploads</a>
+        </li>
+      </ul>
+    </div>-->
+    <br><br><br>
+    <br><br><br>
+    <div class="container-fluid bgup">
+      <center><a class="nav-link" href="/">Go to home</a></center>
+      <div class="row">
+        <div class="col-md-6 m-auto" id="upload-image">
+          <form method="post" action="/admin/upload" enctype="multipart/form-data">
+              <center><legend><h1>Upload Images in gallery</h1></legend></center>
+            <div class="form-outline mb-4">
+              <label class="form-label" for="form2Example17">Choose File</label>
+              <input
+                type="file"
+                id="form2Example17"
+                name="image"
+                class="form-control form-control-lg"
+              />
+            </div>
+      
+            <div class="form-outline mb-4">
+              <label class="form-label" for="form2Example27">Category</label>
+              <input
+                type="text"
+                id="form2Example27"
+                class="form-control form-control-lg"
+                name="cat"
+              />
+            </div>
+      
+            <div class="pt-1 mb-4">
+              <input
+                type="submit"
+                name=""
+                id=""
+                value="Upload"
+                class="btn btn-dark btn-lg btn-block"
+              />
+            </div>
+          </form>
+        </div>
+        <div class="col-md-6 m-auto" id="update-news">
+          <form action="/admin/newsupdate" method="post">
+            <center><legend><h1>Update News</h1></legend></center>
+            <div class="mb-3">
+              <label for="exampleInputEmail1" class="form-label">News Headline</label>
+              <input type="text" name="headline" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+            </div>
+            <div class="mb-3">
+              <label for="exampleInputPassword1" class="form-label">Full news</label>
+             <textarea name="fullnews" id="" cols="30" rows="10" class="form-control"></textarea>
+            </div>
+           <input type="submit" value="Update" class="btn btn-dark btn-lg" name="" id="">
+          </form>
+        </div>
+       
+      </div>
+      <div class="row">
+        <div class="col-md-6">
+          <form action="/admin/place" method="post" enctype="multipart/form-data">
+            <center><h1>Update Placements</h1></center>
+            <label for="" class="form-label">Upload Picture</label>
+            <input type="file" name="pic" id="" class="form-control">
+            <label for="" class="form-label">Name</label>
+            <input type="text" name="name" id="" class="form-control">
+            <label for="" class="form-label">Position</label>
+            <input type="text" name="position" id="" class="form-control">
+            <label for="" class="form-label">Desscription</label>
+            <!-- <input type="text" name="description" id="" class="form-control"> -->
+            <textarea cols="30" rows="10" type="file" name="desc" id="" class="form-control"></textarea>
+            <input type="submit" name="" id="" value="Upload" class="btn btn-dark btn-lg">  
+      
+          </form>
+        </div>
+        <div class="col-md-6">
+          <form action="/admin/status" method="post">
+            <center><h1>Update status</h1></center>
+          </form>
+        </div>
+      </div>
+      <br><br>
+      <div class="row">
+        <div class="col-md-12 border" id="new-registration">
+          <center><h1>Students Details</h1></center>
+          <table class="table table-responsive" style="color: white;">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Father's Name</th>
+                <th>Date Of Birth</th>
+                <th>Gender</th>
+                <th>Annual Income</th>
+                <th>Contact Number</th>
+              </tr>
+            </thead>
+            <tbody>
+              <%obj.forEach((data)=>{%>
+                <tr>
+                <td><%=data.firstname%>  <%=data.lastname%></td>
+                <td><%=data.fathersname%></td>
+                <td><%=data.dob%></td>
+                <td><%=data.gender%></td>
+                <td><%=data.annualincome%></td>
+                <td><%=data.contact%></td>
+              </tr>
+              <%})%>
+            </tbody>
+          </table>
+        </div>
+        
+      </div>
+      <div class="row">
+        <div class="col-md-2 m-auto">
+          <a href="/admin/admin_route/display">see full details</a>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6 m-auto">
+          <center><h1>New Enquiry</h1></center>
+
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,857 @@
+<html>
+  <head>
+    <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css"
+    />
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    
+    <%- include('../partials/links')  %>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+
+        /* background:url("images/IB\ bg.png") */
+      }
+      html {
+        height: 100%;
+      }
+      p {
+        color: grey;
+      }
+      #heading {
+        text-transform: uppercase;
+        color: #ab2330;
+        font-weight: normal;
+      }
+      #msform {
+        text-align: center;
+        position: relative;
+        margin-top: 20px;
+      }
+      #msform fieldset {
+        background: white;
+        border: 0 none;
+        border-radius: 0.5rem;
+        box-sizing: border-box;
+        width: 100%;
+        margin: 0;
+        padding-bottom: 20px;
+        position: relative;
+      }
+      .form-card {
+        text-align: left;
+      }
+      #msform fieldset:not(:first-of-type) {
+        display: none;
+      }
+      #msform input,
+      #msform textarea {
+        padding: 8px 15px 8px 15px;
+        /* border: 1px solid; */
+        border-radius: 10px;
+        margin-bottom: 25px;
+        margin-top: 2px;
+        width: 100%;
+        box-sizing: border-box;
+        font-family: montserrat;
+        background-color: #eceff1;
+        font-size: 16px;
+        letter-spacing: 1px;
+      }
+      #msform input:focus,
+      #msform textarea:focus {
+        -moz-box-shadow: none !important;
+        -webkit-box-shadow: none !important;
+        box-shadow: none !important;
+        border: 1px solid ;
+        outline-width: 0;
+      }
+      #msform .action-button {
+        width: 100px;
+        background: #ab2330;
+        font-weight: bold;
+        color: white;
+        border: 0 none;
+        border-radius: 10px;
+        cursor: pointer;
+        padding: 10px 5px;
+        margin: 10px 0px 10px 5px;
+        float: right;
+      }
+      /* #msform .action-button:hover,
+      #msform .action-button:focus {
+        background-color: red;
+      } */
+      #msform .action-button-previous {
+        width: 100px;
+        background: #616161;
+        font-weight: bold;
+        color: white;
+        border: 0 none;
+        border-radius: 10px;
+        cursor: pointer;
+        padding: 10px 5px;
+        margin: 10px 5px 10px 0px;
+        float: right;
+      }
+      #msform .action-button-previous:hover,
+      #msform .action-button-previous:focus {
+        background-color: #000000;
+      }
+      .card {
+        z-index: 0;
+        border: none;
+        position: relative;
+        /* border: 2px solid black; */
+      }
+      .fs-title {
+        font-size: 25px;
+        color: #ab2330;
+        margin-bottom: 15px;
+        font-weight: normal;
+        text-align: left;
+      }
+      .purple-text {
+        color: #ab2330;
+        font-weight: normal;
+      }
+      .steps {
+        font-size: 25px;
+        color: gray;
+        margin-bottom: 10px;
+        font-weight: normal;
+        text-align: right;
+      }
+      .fieldlabels {
+        color: gray;
+        text-align: left;
+      }
+      #progressbar {
+        margin-bottom: 30px;
+        overflow: hidden;
+        color: lightgrey;
+      }
+      #progressbar .active {
+        color: #ab2330;
+      }
+      #progressbar li {
+        list-style-type: none;
+        font-size: 15px;
+        width: 20%;
+        float: left;
+        position: relative;
+        font-weight: 400;
+      }
+      #progressbar #account:before {
+        font-family: FontAwesome;
+        content: "\f13e";
+      }
+      #progressbar #personal:before {
+        font-family: FontAwesome;
+        content: "\f007";
+      }
+      #progressbar #payment:before {
+        font-family: FontAwesome;
+        content: "\f030";
+      }
+      #progressbar #confirm:before {
+        font-family: FontAwesome;
+        content: "\f00c";
+      }
+      #progressbar #question:before {
+        font-family: FontAwesome;
+        content: "\f015";
+      }
+      #progressbar li:before {
+        width: 50px;
+        height: 50px;
+        line-height: 45px;
+        display: block;
+        font-size: 20px;
+        color: #ffffff;
+        background: lightgray;
+        border-radius: 50%;
+        margin: 0 auto 10px auto;
+        padding: 2px;
+      }
+      #progressbar li:after {
+        content: "";
+        width: 100%;
+        height: 2px;
+        background: lightgray;
+        position: absolute;
+        left: 0;
+        top: 25px;
+        z-index: -1;
+      }
+      #progressbar li.active:before,
+      #progressbar li.active:after {
+        background: #ab2330;
+      }
+      .progress {
+        height: 20px;
+      }
+      .progress-bar {
+        background-color: #ab2330;
+      }
+      .fit-image {
+        width: 100%;
+        object-fit: cover;
+      }
+      .brr{
+        border-radius: 10px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="container-fluid">
+      <div class="row justify-content-center">
+        <div
+          class="col-11 col-sm-9 col-md-7 col-lg-6 col-xl-5 text-center p-0 mt-3 mb-2">
+          <div class="card px-0 pt-4 pb-0 mt-3 mb-3">
+            <h2 id="heading"><b>Register yourself for ITEP</b></h2>
+            <p>Fill all form field to go to next step</p>
+            <form id="msform" action="/register" method="post" >
+              <!-- progressbar -->
+              <ul id="progressbar">
+                <li class="active" id="account"><strong>Personal</strong></li>
+                <li id="personal"><strong>Qualifications</strong></li>
+                <li id="payment"><strong>Image</strong></li>
+                <li id="question"><strong>Address</strong></li>
+                <!-- <li id="question"><strong>Question</strong></li> -->
+                <li id="confirm"><strong>Finish</strong></li>
+              </ul>
+              <div class="progress">
+                <div
+                  class="progress-bar progress-bar-striped progress-bar-animated"
+                  role="progressbar"
+                  aria-valuemin="0"
+                  aria-valuemax="100"
+                  style="width: 25%; background-color: #ab2330;"
+                ></div>
+              </div>
+              <br>
+              <!-- fieldsets -->
+
+              <fieldset>
+                <div class="form-card">
+                  <div class="row">
+                    <div class="col-7">
+                      <h2 class="fs-title"><b>Personal Information:</b></h2>
+                    </div>
+                    <div class="col-5">
+                      <h2 class="steps">Step 1 / 5</h2>
+                    </div>
+                  </div>
+                  <!--  -->
+                  <label class="fieldlabels">First Name: *</label>
+                  <input  id="firstname" type="text" name="firstname" placeholder="First Name" />
+                  <label class="fieldlabels">Last Name: *</label>
+                  <input id="lname" type="text" name="lname" placeholder="Last Name" />
+                  <label class="fieldlabels">Father's Name: *</label>
+                  <input
+                  id="fathername"
+                    type="text"
+                    name="fathername"
+                    placeholder="Father's Name"
+                  />
+                  <label class="fieldlabels">Date of Birth: *</label>
+                  <input id="dob" type="date" name="dob" placeholder="" />
+                  <!-- <label class="fieldlabels">Gender: *</label>
+                  <label class="fieldlabels">Male: *</label>
+                  <input type="radio" name="gender" id="" value="gender"> -->
+                  <label class="fieldlabels">Gender: *</label>
+
+                  <input class="col-md-1" name="gender" type="radio">Male
+                  <input class="col-md-1" name="gender" type="radio">Female
+
+
+                  <!-- <select name="gender" id="gender">
+                    <option value="Male">Male</option>
+                    <option value="Female">Female</option></select -->
+                  <br /><br />
+                  <label class="fieldlabels">Maritial Status: *</label>
+                  <select name="maritialstatus" id="maritialstatus">
+                    <option value="Married">Married</option>
+                    <option value="Unmarried">Unmarried</option></select
+                  ><br /><br />
+                  <label class="fieldlabels">Annual Income: *</label>
+                  <input id="annualincome" type="number" name="annualincome" placeholder="Annual income" />
+                  <label class="fieldlabels">Email: *</label>
+                  <input id="email" type="email" name="email" placeholder="Email Id" />
+                  <label class="fieldlabels">Contact No.: *</label>
+                  <input id="contact" type="text" name="contact" placeholder="Contact No." />
+                  <label class="fieldlabels">Alternate Contact No.: *</label>
+                  <input
+                  id="alternatecontact"
+                    type="text"
+                    name="alternatecontact"
+                    placeholder="Alternate Contact No."
+                  />
+                </div>
+                <input
+                id="form1"
+                  type="button"
+                  name="next"
+                  class="next action-button"
+                  value="Next"
+                />
+              </fieldset>
+              <fieldset>
+                <div class="form-card">
+                  <div class="row">
+                    <div class="col-7">
+                      <h2 class="fs-title"><b>Qualifications:</b></h2>
+                    </div>
+                    <div class="col-5">
+                      <h2 class="steps">Step 2 / 5</h2>
+                    </div>
+                  </div>
+                  <h3>10 <sup>th</sup> </h3>
+                  <!-- <input class="pass" type="text" name="board10" placeholder="Board" /> -->
+                  <label class="fieldlabels">Board: *</label>
+                  <select id="board10" name="board10" id="">
+                    <option value="StateBoard">State Board</option>
+                    <option value="CBSC">CBSC</option>
+                    <option value="ICSE">ICSE</option>
+                  </select>
+                  <input id="school10" type="text" name="school10" placeholder="School" />
+                  <!-- <input class="pass" type="number" name="pass10" placeholder="Passing Year" /> -->
+                 
+                   <label class="fieldlabels">Passing Year: *</label>
+                 <select  id="pass10" name="pass10" class="pss">
+        
+                 </select>
+                  <input id="per10" type="number" name="per10" placeholder="Percentage" />
+
+                  <h3>12 <sup>th</sup> </h3>
+                  <!-- <input class="pass" type="text" name="board12" placeholder="Board" /> -->
+                  <label class="fieldlabels">Board: *</label>
+                  <select id="board12" name="board12" id="">
+                    <option value="StateBoard">State Board</option>
+                    <option value="CBSC">CBSC</option>
+                    <option value="ICSE">ICSE</option>
+                  </select>
+                  <input id="school12" type="text" name="school12" placeholder="School" />
+                    <label class="fieldlabels">Passing Year: *</label>
+                 <select  id="pass12" name="pass12 " class="pss">
+        
+                 </select>
+                  <!-- <input class="pass" type="number" name="pass12" placeholder="Passing Year" />  -->
+                  <input id="per12" type="number" name="per12" placeholder="Percentage" />
+
+                  <h3>Under Graduation</h3>
+                  <input id="universityUG" type="text" name="universityUG" placeholder="University" />
+                  <input id="collegeUG" type="text" name="collegeUG" placeholder="College" />
+                    <label class="fieldlabels">Passing Year: *</label>
+                 <select  id="passUG" name="passUG" class="pss">
+        
+                 </select>
+                  <!-- <input class="pass" type="number" name="passUG" placeholder="Passing Year" />  -->
+                  <input id="perUG" type="number" name="perUG" placeholder="Percentage" />
+
+
+                  <h3>Post Graduation</h3>
+                  <input id="universityPG" type="text" name="universityPG" placeholder="University" />
+                  <input id="collegePG" type="text" name="collegePG" placeholder="College" />
+                    <label class="fieldlabels">Passing Year: *</label>
+                 <select id="passPG" name="passPG" class="pss">
+        
+                 </select>
+                  <!-- <input type="number" name="passPG" placeholder="Passing Year" />  -->
+                  <input id="perPG" type="number" name="perPG" placeholder="Percentage" />
+                  <!-- <label class="fieldlabels">Local Address: *</label>
+                  <input
+                    type="text"
+                    name="localaddress"
+                    placeholder="Local Address"
+                  />
+                  <label class="fieldlabels">State: *</label>
+                  <input type="text" name="localstate" placeholder="state" />
+                  <label class="fieldlabels">City: *</label>
+                  <input
+                    type="text"
+                    name="localcity"
+                    placeholder="Contact No."
+                  /> -->
+                </div>
+                
+                <input
+                  type="button"
+                  id="form2"
+                  name="next"
+                  class="next action-button"
+                  value="Next"
+                />
+                <input
+                  type="button"
+                  name="previous"
+                  class="previous action-button-previous"
+                  value="Previous"
+                />
+              </fieldset>
+
+
+
+
+              <fieldset>
+                <div class="form-card">
+                  <div class="row">
+                    <div class="col-7">
+                      <h2 class="fs-title"><b>Image Upload:</b></h2>
+                    </div>
+                    <div class="col-5">
+                      <h2 class="steps">Step 3 / 5</h2>
+                    </div>
+                  </div>
+                  <label class="fieldlabels">Upload Your Photo:</label>
+                  <input type="file" name="pic" accept="image/jpg" />
+                  <label class="fieldlabels">Adhaar Card:</label>
+                  <input type="file" name="adhaarpic" accept="image/jpg" />
+                  <label class="fieldlabels">Father's Adhaar Card:</label>
+                  <input type="file" name="fadhaarpic" accept="image/jpg" />
+                  <label class="fieldlabels"
+                    >12<sup>th</sup> class marksheet:</label
+                  >
+                  <input type="file" name="marksheet12" accept="image/jpg" />
+                  <label class="fieldlabels">Recently passout:</label>
+                  <input
+                    type="file"
+                    name="marksheetrecently"
+                    accept="image/jpg"
+                  />
+                  <label class="fieldlabels">Samagra I.D.:</label>
+                  <input type="file" name="samagraid" accept="image/jpg" />
+                  <label class="fieldlabels"
+                    >Father's Income certificate:</label
+                  >
+                  <input
+                    type="file"
+                    name="marksheetrecently"
+                    accept="image/jpg"
+                  />
+                </div>
+                <input
+                  type="button"
+                  name="next"
+                  class="next action-button"
+                  value="next"
+                />
+                <input
+                  type="button"
+                  name="previous"
+                  class="previous action-button-previous"
+                  value="Previous"
+                />
+              </fieldset>
+
+
+
+
+              <fieldset>
+                <div class="form-card">
+                  <div class="row">
+                    <div class="col-7">
+                      <h2 class="fs-title"><b>Address Information:</b></h2>
+                    </div>
+                    <div class="col-5">
+                      <h2 class="steps">Step 4 / 5</h2>
+                    </div>
+                  </div>
+                  <label class="fieldlabels">Local Address: *</label>
+                  <input id="localaddress" type="text" name="localaddress" placeholder="Local Address"/>
+                  <label class="fieldlabels">State: *</label>
+                  <input id="localstate" type="text" name="localstate" placeholder="state" />
+                  <label class="fieldlabels">City: *</label>
+                  <input id="localcity" type="text" name="localcity" placeholder="City"/>
+                  <label class="fieldlabels">Permanent Address: *</label>
+                  <input id="permanentaddress" type="text" name="permanentaddress" placeholder="Permanent Address"/>
+                  <label class="fieldlabels">State: *</label>
+                  <input id="permanentstate" type="text" name="permanentstate" placeholder="state"/>
+                  <label class="fieldlabels">City: *</label>
+                  <input id="permanentcity" type="text" name="permanentcity" placeholder="City"/>
+                  <label class="fieldlabels">What other courses are you doing right now?: *</label>
+                  <textarea name="q1" id="q1" cols="30" rows="3"></textarea>
+                  <label class="fieldlabels">What is your ambition in next five years?: *</label>
+                  <textarea name="q2" id="q2" cols="30" rows="3"></textarea>
+                  <label class="fieldlabels">Why do you want to pursue your career in I.T. sector? Narrate an incident which made you to decide to be in the sector: *</label>
+                  <textarea name="q3" id="q3" cols="30" rows="3"></textarea>
+                  <label class="fieldlabels">Write about yourself and your company?: *</label>
+                  <textarea name="q4" id="q4" cols="30" rows="3"></textarea>
+                  <label class="fieldlabels">Write your commitments in the family and expectations your parents?: *</label>
+                  <textarea name="q5" id="q5" cols="30" rows="3"></textarea>
+                  <label class=""><input type="checkbox" value="true" name="acc">I do hereby declare that all the information given about is true to the best of my knowledge and beliefs</label>
+                </div>
+
+                <input
+                  type="submit"
+                  name="next"
+                  id="form4"
+                  class="next action-button"
+                  value="Submit"
+                />
+                <input
+                  type="button"
+                  name="previous"
+                  class="previous action-button-previous"
+                  value="Previous"
+                />
+              </fieldset>
+
+
+
+              <fieldset>
+                <div class="form-card">
+                  <div class="row">
+                    <div class="col-7">
+                      <h2 class="fs-title">Finish:</h2>
+                    </div>
+                    <div class="col-5">
+                      <h2 class="steps">Step 5 / 5</h2>
+                    </div>
+                  </div>
+                  <br /><br />
+                  <h2 class="purple-text text-center">
+                    <strong>SUCCESS !</strong>
+                  </h2>
+                  <br />
+                  <div class="row justify-content-center">
+                    <div class="col-3">
+                      <img src="tick.png" class="fit-image" />
+                    </div>
+                  </div>
+                  <br /><br />
+                  <div class="row justify-content-center">
+                    <div class="col-7 text-center">
+                      <h5 class="purple-text text-center">
+                        You Have Successfully Registered you have to wait for
+                        approval.
+                      </h5>
+                    </div>
+                  </div>
+                </div>
+              </fieldset>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+  <script>
+      
+    document.getElementById("firstname").addEventListener("blur", function() 
+    {
+      let firstname = document.getElementById('firstname').value;
+      !(firstname.match(/^(?=.{3,50}$)[a-z]*$/i)) ? (this.style.border = "1px solid red") : (this.style.border = "1px solid green");
+    })
+
+    document.getElementById("lname").addEventListener("blur", function() 
+    {
+      let lname = document.getElementById('lname').value;
+      !(lname.match(/^(?=.{3,50}$)[a-z]*$/i)) ? (this.style.border = "1px solid red") : (this.style.border = "1px solid green");
+    })
+
+    document.getElementById("fathername").addEventListener("blur", function() 
+    {
+      let fathername = document.getElementById('fathername').value;
+      !(fathername.match(/^(?=.{3,50}$)[a-z]*$/i)) ? (this.style.border = "1px solid red") : (this.style.border = "1px solid green");
+    })
+
+    document.getElementById("gender").addEventListener("blur", function() 
+    {
+      let gender = document.getElementById('gender').value;
+      !(gender.match(/^M(ale)?$|^F(emale)?$/i)) ? (this.style.border = "1px solid red") : (this.style.border = "1px solid green");
+    })
+
+    document.getElementById("maritialstatus").addEventListener("blur", function() 
+    {
+      let maritialstatus = document.getElementById('maritialstatus').value;
+      !(maritialstatus.match(/^M(arried)?$|^U(nmarried)?$/i)) ? (this.style.border = "1px solid red") : (this.style.border = "1px solid green");
+    })
+
+    document.getElementById("annualincome").addEventListener("blur", function() 
+    {
+      let annualincome = document.getElementById('annualincome').value;
+      !(annualincome.match(/^\d{1,7}(?:,\d{7})*$/i)) ? (this.style.border = "1px solid red") : (this.style.border = "1px solid green");
+    })
+
+    document.getElementById("email").addEventListener("blur", function() 
+    {
+      let email = document.getElementById('email').value;
+      !(email.match(/[a-z0-9]+@[a-z]+\.[a-z]{2,3}/i)) ? (this.style.border = "1px solid red") : (this.style.border = "1px solid green");
+    })
+
+    document.getElementById("contact").addEventListener("blur", function() 
+    {
+      let contact = document.getElementById('contact').value;
+      !(contact.match(/^\(?\d{3}\)?[\s.-]?\d{3}[\s.-]?\d{4}$/i)) ? (this.style.border = "1px solid red") : (this.style.border = "1px solid green");
+    })
+
+    document.getElementById("alternatecontact").addEventListener("blur", function() 
+    {
+      let alternatecontact = document.getElementById('alternatecontact').value;
+      !(alternatecontact.match(/^\(?\d{3}\)?[\s.-]?\d{3}[\s.-]?\d{4}$/i)) ? (this.style.border = "1px solid red") : (this.style.border = "1px solid green");
+    })
+
+    document.getElementById("board10").addEventListener("blur", function() 
+    {
+      let board10 = document.getElementById('board10').value;
+      !(board10.match(/^S(tateBoard)?$|^C(BSC)?$|^I(CSC)?$/i)) ? (this.style.border = "1px solid red") : (this.style.border = "1px solid green");
+    })
+
+    document.getElementById("school10").addEventListener("blur", function() 
+    {
+      let school10 = document.getElementById('school10').value;
+      !(school10.match(/([A-Z][^\s,.]+[.]?\s[(]?)*(College|University|Institute|Law School|School of|Academy)/i)) ? (this.style.border = "1px solid red") : (this.style.border = "1px solid green");
+    })
+
+    document.getElementById("pass10").addEventListener("blur", function() 
+    {
+      let pass10 = document.getElementById('pass10').value;
+      !(pass10.match(/(?:(?:199)[0-9]{1}|(?:200)[0-9]{1}|(?:201)[0-9]{1}|(?:202)[0-2]{1})/i)) ? (this.style.border = "1px solid red") : (this.style.border = "1px solid green");
+    })
+
+    document.getElementById("per10").addEventListener("blur", function() 
+    {
+      let per10 = document.getElementById('per10').value;
+      !(per10.match(/^[3-9]?[3-9]{1}$|^100$/i )) ? (this.style.border = "1px solid red") : (this.style.border = "1px solid green");
+    })
+
+    document.getElementById("board12").addEventListener("blur", function() 
+    {
+      let board12 = document.getElementById('board12').value;
+      !(board12.match(/^S(tateBoard)?$|^C(BSC)?$|^I(CSC)?$/i)) ? (this.style.border = "1px solid red") : (this.style.border = "1px solid green");
+    })
+
+    document.getElementById("school12").addEventListener("blur", function() 
+    {
+      let school12 = document.getElementById('school12').value;
+      !(school12.match(/([A-Z][^\s,.]+[.]?\s[(]?)*(College|University|Institute|Law School|School of|Academy)/i)) ? (this.style.border = "1px solid red") : (this.style.border = "1px solid green");
+    })
+
+    document.getElementById("pass12").addEventListener("blur", function() 
+    {
+      let pass12 = document.getElementById('pass12').value;
+      !(pass12.match(/(?:(?:199)[0-9]{1}|(?:200)[0-9]{1}|(?:201)[0-9]{1}|(?:202)[0-2]{1})/i)) ? (this.style.border = "1px solid red") : (this.style.border = "1px solid green");
+    })
+
+    document.getElementById("per12").addEventListener("blur", function() 
+    {
+      let per12 = document.getElementById('per12').value;
+      !(per12.match(/^[3-9]?[3-9]{1}$|^100$/i )) ? (this.style.border = "1px solid red") : (this.style.border = "1px solid green");
+    })
+
+
+    document.getElementById("universityUG").addEventListener("blur", function() 
+    {
+      let universityUG = document.getElementById('universityUG').value;
+      !(universityUG.match(/^S(tateBoard)?$|^C(BSC)?$|^I(CSC)?$/i)) ? (this.style.border = "1px solid red") : (this.style.border = "1px solid green");
+    })
+
+    document.getElementById("collegeUG").addEventListener("blur", function() 
+    {
+      let collegeUG = document.getElementById('collegeUG').value;
+      !(collegeUG.match(/([A-Z][^\s,.]+[.]?\s[(]?)*(College|University|Institute|Law School|School of|Academy)/i)) ? (this.style.border = "1px solid red") : (this.style.border = "1px solid green");
+    })
+
+    document.getElementById("passUG").addEventListener("blur", function() 
+    {
+      let passUG = document.getElementById('passUG').value;
+      !(passUG.match(/(?:(?:199)[0-9]{1}|(?:200)[0-9]{1}|(?:201)[0-9]{1}|(?:202)[0-2]{1})/i)) ? (this.style.border = "1px solid red") : (this.style.border = "1px solid green");
+    })
+
+    document.getElementById("perUG").addEventListener("blur", function() 
+    {
+      let perUG = document.getElementById('perUG').value;
+      !(perUG.match(/^[3-9]?[3-9]{1}$|^100$/i )) ? (this.style.border = "1px solid red") : (this.style.border = "1px solid green");
+    })
+
+    document.getElementById("universityPG").addEventListener("blur", function() 
+    {
+      let universityPG = document.getElementById('universityPG').value;
+      !(universityPG.match(/^S(tateBoard)?$|^C(BSC)?$|^I(CSC)?$/i)) ? (this.style.border = "1px solid red") : (this.style.border = "1px solid green");
+    })
+
+    document.getElementById("collegePG").addEventListener("blur", function() 
+    {
+      let collegePG = document.getElementById('collegePG').value;
+      !(collegePG.match(/([A-Z][^\s,.]+[.]?\s[(]?)*(College|University|Institute|Law School|School of|Academy)/i)) ? (this.style.border = "1px solid red") : (this.style.border = "1px solid green");
+    })
+
+    document.getElementById("passPG").addEventListener("blur", function() 
+    {
+      let passPG = document.getElementById('passPG').value;
+      !(passPG.match(/(?:(?:199)[0-9]{1}|(?:200)[0-9]{1}|(?:201)[0-9]{1}|(?:202)[0-2]{1})/i)) ? (this.style.border = "1px solid red") : (this.style.border = "1px solid green");
+    })
+
+    document.getElementById("perPG").addEventListener("blur", function() 
+    {
+      let perPG = document.getElementById('perPG').value;
+      !(perPG.match(/^[3-9]?[3-9]{1}$|^100$/i )) ? (this.style.border = "1px solid red" ) : (this.style.border = "1px solid green" );
+    })
+
+    document.getElementById("localaddress").addEventListener("blur", function() 
+    {
+      let localaddress = document.getElementById('localaddress').value;
+      !(localaddress.match(/^[#.0-9a-zA-Z\s,-]+$/i)) ? (this.style.border = "1px solid red") : (this.style.border = "1px solid green");
+    })
+
+    document.getElementById("localstate").addEventListener("blur", function() 
+    {
+      let localstate = document.getElementById('localstate').value;
+      !(localstate.match(/([a-zA-Z]+|[a-zA-Z]+\\s[a-zA-Z]+)/i)) ? (this.style.border = "1px solid red") : (this.style.border = "1px solid green");
+    })
+
+    document.getElementById("localcity").addEventListener("blur", function() 
+    {
+      let localcity = document.getElementById('localcity').value;
+      !(localcity.match(/([a-zA-Z]+|[a-zA-Z]+\\s[a-zA-Z]+)/i)) ? (this.style.border = "1px solid red") : (this.style.border = "1px solid green");
+    })
+
+    document.getElementById("permanentaddress").addEventListener("blur", function() 
+    {
+      let permanentaddress = document.getElementById('permanentaddress').value;
+      !(permanentaddress.match(/^[#.0-9a-zA-Z\s,-]+$/i)) ? (this.style.border = "1px solid red") : (this.style.border = "1px solid green");
+    })
+
+    document.getElementById("permanentstate").addEventListener("blur", function() 
+    {
+      let permanentstate = document.getElementById('permanentstate').value;
+      !(localstate.match(/([a-zA-Z]+|[a-zA-Z]+\\s[a-zA-Z]+)/i)) ? (this.style.border = "1px solid red") : (this.style.border = "1px solid green");
+    })
+
+    document.getElementById("permanentcity").addEventListener("blur", function() 
+    {
+      let permanentcity = document.getElementById('permanentcity').value;
+      !(permanentcity.match(/([a-zA-Z]+|[a-zA-Z]+\\s[a-zA-Z]+)/i)) ? (this.style.border = "1px solid red") : (this.style.border = "1px solid green");
+    })
+
+    document.getElementById("q1").addEventListener("blur", function() 
+    {
+      let q1 = document.getElementById('q1').value;
+      !(q1.match(/^(?:\\b\w+\\b[\s\r\n]*){0,100}$/i)) ? (this.style.border = "1px solid red") : (this.style.border = "1px solid green");
+    })
+
+    document.getElementById("q2").addEventListener("blur", function() 
+    {
+      let q2 = document.getElementById('q2').value;
+      !(q2.match(/^(?:\\b\w+\\b[\s\r\n]*){0,100}$/i)) ? (this.style.border = "1px solid red") : (this.style.border = "1px solid green");
+    })
+
+    document.getElementById("q3").addEventListener("blur", function() 
+    {
+      let q3 = document.getElementById('q3').value;
+      !(q3.match(/^(?:\\b\w+\\b[\s\r\n]*){0,100}$/i)) ? (this.style.border = "1px solid red") : (this.style.border = "1px solid green");
+    })
+
+    document.getElementById("q4").addEventListener("blur", function() 
+    {
+      let q4 = document.getElementById('q4').value;
+      !(q4.match(/^(?:\\b\w+\\b[\s\r\n]*){0,100}$/i)) ? (this.style.border = "1px solid red") : (this.style.border = "1px solid green");
+    })
+
+    document.getElementById("q5").addEventListener("blur", function() 
+    {
+      let q5 = document.getElementById('q5').value;
+      !(q5.match(/^(?:\\b\w+\\b[\s\r\n]*){0,100}$/i)) ? (this.style.border = "1px solid red") : (this.style.border = "1px solid green");
+    })
+
+
+    let pss=new Array();
+    pss=document.querySelectorAll('.pss');
+    // console.log(pass);
+    const date=new Date();
+    const year=date.getFullYear();
+    let a="";
+    for(let i=year;i>year-22;i--){
+       a+=`<option>${i}</option>`
+    }
+    for(let i=0;i<pss.length;i++){
+      pss[i].innerHTML=a;
+    }
+    </script>
+    <script type="text/javascript">
+      $(document).ready(function () {
+        var current_fs, next_fs, previous_fs; //fieldsets
+        var opacity;
+        var current = 1;
+        var steps = $("fieldset").length;
+        setProgressBar(current);
+        $(".next").click(function () {
+
+          current_fs = $(this).parent();
+          next_fs = $(this).parent().next();
+          //Add Class Active
+          $("#progressbar li")
+            .eq($("fieldset").index(next_fs))
+            .addClass("active");
+          //show the next fieldset
+          next_fs.show();
+          //hide the current fieldset with style
+          current_fs.animate(
+            { opacity: 0 },
+            {
+              step: function (now) {
+                // for making fielset appear animation
+                opacity = 1 - now;
+                current_fs.css({
+                  display: "none",
+                  position: "relative",
+                });
+                next_fs.css({ opacity: opacity });
+              },
+              duration: 500,
+            }
+          );
+          setProgressBar(++current);
+        });
+        $(".previous").click(function () {
+          current_fs = $(this).parent();
+          previous_fs = $(this).parent().prev();
+          //Remove class active
+          $("#progressbar li")
+            .eq($("fieldset").index(current_fs))
+            .removeClass("active");
+          //show the previous fieldset
+          previous_fs.show();
+          //hide the current fieldset with style
+          current_fs.animate(
+            { opacity: 0 },
+            {
+              step: function (now) {
+                // for making fielset appear animation
+                opacity = 1 - now;
+                current_fs.css({
+                  display: "none",
+                  position: "relative",
+                });
+                previous_fs.css({ opacity: opacity });
+              },
+              duration: 500,
+            }
+          );
+          setProgressBar(--current);
+        });
+        function setProgressBar(curStep) {
+          var percent = parseFloat(100 / steps) * curStep;
+          percent = percent.toFixed();
+          $(".progress-bar").css("width", percent + "%");
+        }
+        $(".submit").click(function () {
+          return false;
+        });
+      });
+     </script>
+      
+      
+    <%- include('../partials/scripts')  %>
+  
+</html>

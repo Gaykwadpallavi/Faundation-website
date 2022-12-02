@@ -1,0 +1,1339 @@
+<html>
+  <head>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css"
+    />
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+
+        /* background:url("images/IB\ bg.png") */
+      }
+      html {
+        height: 100%;
+      }
+      p {
+        color: grey;
+      }
+      #heading {
+        text-transform: uppercase;
+        color: #ab2330;
+        font-weight: normal;
+      }
+      #msform {
+        text-align: center;
+        position: relative;
+        margin-top: 20px;
+      }
+      #msform fieldset {
+        background: white;
+        border: 0 none;
+        border-radius: 0.5rem;
+        box-sizing: border-box;
+        width: 100%;
+        margin: 0;
+        padding-bottom: 20px;
+        position: relative;
+      }
+      .form-card {
+        text-align: left;
+      }
+      #msform fieldset:not(:first-of-type) {
+        display: none;
+      }
+      #msform input,
+      #msform textarea {
+        padding: 8px 15px 8px 15px;
+        border: 1px solid #ccc;
+        border-radius: 10px;
+        margin-bottom: 25px;
+        margin-top: 2px;
+        width: 100%;
+        box-sizing: border-box;
+        font-family: montserrat;
+        background-color: #eceff1;
+        font-size: 16px;
+        letter-spacing: 1px;
+      }
+      #msform input:focus,
+      #msform textarea:focus {
+        -moz-box-shadow: none !important;
+        -webkit-box-shadow: none !important;
+        box-shadow: none !important;
+        border: 1px solid ;
+        outline-width: 0;
+      }
+      #msform .action-button {
+        width: 100px;
+        background: #ab2330;
+        font-weight: bold;
+        color: white;
+        border: 0 none;
+        border-radius: 10px;
+        cursor: pointer;
+        padding: 10px 5px;
+        margin: 10px 0px 10px 5px;
+        float: right;
+      }
+      #msform .action-button:hover,
+      #msform .action-button:focus {
+        background-color: red;
+      }
+      #msform .action-button-previous {
+        width: 100px;
+        background: #616161;
+        font-weight: bold;
+        color: white;
+        border: 0 none;
+        border-radius: 10px;
+        cursor: pointer;
+        padding: 10px 5px;
+        margin: 10px 5px 10px 0px;
+        float: right;
+      }
+      #msform .action-button-previous:hover,
+      #msform .action-button-previous:focus {
+        background-color: #000000;
+      }
+      .card {
+        z-index: 0;
+        border: none;
+        position: relative;
+        /* border: 2px solid black; */
+      }
+      .fs-title {
+        font-size: 25px;
+        color: #ab2330;
+        margin-bottom: 15px;
+        font-weight: normal;
+        text-align: left;
+      }
+      .purple-text {
+        color: #ab2330;
+        font-weight: normal;
+      }
+      .steps {
+        font-size: 25px;
+        color: gray;
+        margin-bottom: 10px;
+        font-weight: normal;
+        text-align: right;
+      }
+      .fieldlabels {
+        color: gray;
+        text-align: left;
+      }
+      #progressbar {
+        margin-bottom: 30px;
+        overflow: hidden;
+        color: lightgrey;
+      }
+      #progressbar .active {
+        color: #ab2330;
+      }
+      #progressbar li {
+        list-style-type: none;
+        font-size: 15px;
+        width: 20%;
+        float: left;
+        position: relative;
+        font-weight: 400;
+      }
+      #progressbar #account:before {
+        font-family: FontAwesome;
+        content: "\f13e";
+      }
+      #progressbar #personal:before {
+        font-family: FontAwesome;
+        content: "\f007";
+      }
+      #progressbar #payment:before {
+        font-family: FontAwesome;
+        content: "\f030";
+      }
+      #progressbar #confirm:before {
+        font-family: FontAwesome;
+        content: "\f00c";
+      }
+      #progressbar #question:before {
+        font-family: FontAwesome;
+        content: "\f015";
+      }
+      #progressbar li:before {
+        width: 50px;
+        height: 50px;
+        line-height: 45px;
+        display: block;
+        font-size: 20px;
+        color: #ffffff;
+        background: lightgray;
+        border-radius: 50%;
+        margin: 0 auto 10px auto;
+        padding: 2px;
+      }
+      #progressbar li:after {
+        content: "";
+        width: 100%;
+        height: 2px;
+        background: lightgray;
+        position: absolute;
+        left: 0;
+        top: 25px;
+        z-index: -1;
+      }
+      #progressbar li.active:before,
+      #progressbar li.active:after {
+        background: #ab2330;
+      }
+      .progress {
+        height: 20px;
+      }
+      .progress-bar {
+        background-color: #ab2330 !important;
+      }
+      .fit-image {
+        width: 100%;
+        object-fit: cover;
+      }
+      .brr{
+        border-radius: 10px;
+      }
+    </style>
+    <%- include('../partials/links')  %>
+
+  </head>
+
+  <body>
+    
+    <div class="container-fluid">
+      <div class="row justify-content-center">
+        <div
+          class="col-11 col-sm-9 col-md-7 col-lg-6 col-xl-5 text-center p-0 mt-3 mb-2"
+        >
+          <div class="card px-0 pt-4 pb-0 mt-3 mb-3" style="border:none;">
+            <h2 id="heading"><b>Register yourself for ITEP</b></h2>
+            <p>Fill all form field to go to next step</p>
+            <form id="msform" action="/register" method="post" enctype="multipart/form-data">
+              <!-- progressbar -->
+              <ul id="progressbar">
+                <li class="active" id="account"><strong>Personal</strong></li>
+                <li id="personal"><strong>Qualifications</strong></li>
+                <li id="payment"><strong>Image</strong></li>
+                <li id="question"><strong>Address</strong></li>
+                <!-- <li id="question"><strong>Question</strong></li> -->
+                <li id="confirm"><strong>Finish</strong></li>
+              </ul>
+              <div class="progress">
+                <div
+                  class="progress-bar progress-bar-striped progress-bar-animated"
+                  role="progressbar"
+                  aria-valuemin="0"
+                  aria-valuemax="100"
+                  style="width: 25%; background-color: #ab2330;"
+                ></div>
+              </div>
+              <br />
+              <!-- fieldsets -->
+
+              <fieldset>
+                <div class="form-card">
+                  <div class="row">
+                    <div class="col-7">
+                      <h2 class="fs-title"><b>Personal Information:</b></h2>
+                    </div>
+                    <div class="col-5">
+                      <h2 class="steps">Step 1 / 5</h2>
+                    </div>
+                  </div>
+                  <!--  -->
+                  <label class="fieldlabels">First Name: *</label>
+                  <input id="firstname" type="text" name="firstname" placeholder="First Name"/>
+                  <label class="fieldlabels">Last Name: *</label>
+                  <input id="lname" type="text" name="lname" placeholder="Last Name" />
+                  <label class="fieldlabels">Father's Name: *</label>
+                  <input id="fathername" type="text" name="fathername" placeholder="Father's Name"/>
+                  <label class="fieldlabels">Date of Birth: *</label>
+                  <input id="dob" type="date" name="dob" placeholder="" />
+                  <!-- <label class="fieldlabels">Gender: *</label>
+                  <label class="fieldlabels">Male: *</label>
+                  <input type="radio" name="gender" id="" value="gender"> -->
+                  <label class="fieldlabels">Gender: *</label>
+                  <select name="gender" id="gender">
+                    <option value="Male">Male</option>
+                    <option value="Female">Female</option></select>
+                  <br /><br />
+                  <label class="fieldlabels">Maritial Status: *</label>
+                  <select name="maritialstatus" id="maritialstatus">
+                    <option value="Married">Married</option>
+                    <option value="Unmarried">Unmarried</option></select
+                  ><br /><br />
+                  <label class="fieldlabels">Annual Income: *</label>
+                  <input id="annualincome" type="number" name="annualincome" placeholder="Annual income" />
+                  <label class="fieldlabels">Email: *</label>
+                  <input id="email" type="email" name="email" placeholder="Email Id" />
+                  <label class="fieldlabels">Contact No.: *</label>
+                  <input id="contact" type="text" name="contact" placeholder="Contact No." />
+                  <label class="fieldlabels">Alternate Contact No.: *</label>
+                  <input
+                  id="alternatecontact"
+                    type="text"
+                    name="alternatecontact"
+                    placeholder="Alternate Contact No."
+                  />
+                </div>
+                <input
+                  id="form1"
+                  disabled ="true"
+                  type="button"
+                  name="next"
+                  class="next action-button disable"
+                  value="Next"
+                />
+              </fieldset>
+
+
+
+
+              <fieldset>
+                <div class="form-card">
+                  <div class="row">
+                    <div class="col-7">
+                      <h2 class="fs-title"><b>Qualifications:</b></h2>
+                    </div>
+                    <div class="col-5">
+                      <h2 class="steps">Step 2 / 5</h2>
+                    </div>
+                  </div>
+                  <h3>10 <sup>th</sup> </h3>
+                  <!-- <input class="pass" type="text" name="board10" placeholder="Board" /> -->
+                  <label class="fieldlabels">Board: *</label>
+                  <select id="board10" name="board10" id="">
+                    <option value="StateBoard">State Board</option>
+                    <option value="CBSC">CBSC</option>
+                    <option value="ICSE">ICSE</option>
+                  </select>
+                  <input id="school10" type="text" name="school10" placeholder="School" />
+                  <!-- <input class="pass" type="number" name="pass10" placeholder="Passing Year" /> -->
+                 
+                   <label class="fieldlabels">Passing Year: *</label>
+                 <select  id="pass10" name="pass10" class="pss">
+        
+                 </select>
+                  <input id="per10" type="number" name="per10" placeholder="Percentage" />
+
+                  <h3>12 <sup>th</sup> </h3>
+                  <!-- <input class="pass" type="text" name="board12" placeholder="Board" /> -->
+                  <label class="fieldlabels">Board: *</label>
+                  <select id="board12" name="board12" id="">
+                    <option value="StateBoard">State Board</option>
+                    <option value="CBSC">CBSC</option>
+                    <option value="ICSE">ICSE</option>
+                  </select>
+                  <input id="school12" type="text" name="school12" placeholder="School" />
+                    <label class="fieldlabels">Passing Year: *</label>
+                 <select  id="pass12" name="pass12 " class="pss">
+        
+                 </select>
+                  <!-- <input class="pass" type="number" name="pass12" placeholder="Passing Year" />  -->
+                  <input id="per12" type="number" name="per12" placeholder="Percentage" />
+
+                  <h3>Under Graduation</h3>
+                  <input id="universityUG" type="text" name="universityUG" placeholder="University" />
+                  <input id="collegeUG" type="text" name="collegeUG" placeholder="College" />
+                    <label class="fieldlabels">Passing Year: *</label>
+                 <select  id="passUG" name="passUG" class="pss">
+        
+                 </select>
+                  <!-- <input class="pass" type="number" name="passUG" placeholder="Passing Year" />  -->
+                  <input id="perUG" type="number" name="perUG" placeholder="Percentage" />
+
+
+                  <h3>Post Graduation</h3>
+                  <input id="universityPG" type="text" name="universityPG" placeholder="University" />
+                  <input id="collegePG" type="text" name="collegePG" placeholder="College" />
+                    <label class="fieldlabels">Passing Year: *</label>
+                 <select id="passPG" name="passPG" class="pss">
+        
+                 </select>
+                  <!-- <input type="number" name="passPG" placeholder="Passing Year" />  -->
+                  <input id="perPG" type="number" name="perPG" placeholder="Percentage" />
+                  <!-- <label class="fieldlabels">Local Address: *</label>
+                  <input
+                    type="text"
+                    name="localaddress"
+                    placeholder="Local Address"
+                  />
+                  <label class="fieldlabels">State: *</label>
+                  <input type="text" name="localstate" placeholder="state" />
+                  <label class="fieldlabels">City: *</label>
+                  <input
+                    type="text"
+                    name="localcity"
+                    placeholder="Contact No."
+                  /> -->
+                </div>
+                
+                <input
+                  type="button"
+                  id="form2"
+                  disabled ="true"
+                  name="next"
+                  class="next action-button"
+                  value="Next"
+                />
+                <input
+                  type="button"
+                  name="previous"
+                  class="previous action-button-previous"
+                  value="Previous"
+                />
+              </fieldset>
+
+
+
+
+              <fieldset>
+                <div class="form-card">
+                  <div class="row">
+                    <div class="col-7">
+                      <h2 class="fs-title"><b>Image Upload:</b></h2>
+                    </div>
+                    <div class="col-5">
+                      <h2 class="steps">Step 3 / 5</h2>
+                    </div>
+                  </div>
+                  <label class="fieldlabels">Upload Your Photo:</label>
+                  <input type="file" name="pic" accept="image/jpg" />
+                  <label class="fieldlabels">Adhaar Card:</label>
+                  <input type="file" name="adhaarpic" accept="image/jpg" />
+                  <label class="fieldlabels">Father's Adhaar Card:</label>
+                  <input type="file" name="fadhaarpic" accept="image/jpg" />
+                  <label class="fieldlabels"
+                    >12<sup>th</sup> class marksheet:</label
+                  >
+                  <input type="file" name="marksheet12" accept="image/jpg" />
+                  <label class="fieldlabels">Recently passout:</label>
+                  <input
+                    type="file"
+                    name="marksheetrecently"
+                    accept="image/jpg"
+                  />
+                  <label class="fieldlabels">Samagra I.D.:</label>
+                  <input type="file" name="samagraid" accept="image/jpg" />
+                  <label class="fieldlabels"
+                    >Father's Income certificate:</label
+                  >
+                  <input
+                    type="file"
+                    name="marksheetrecently"
+                    accept="image/jpg"
+                  />
+                </div>
+                <input
+                  type="button"
+                  name="next"
+                  class="next action-button"
+                  value="next"
+                />
+                <input
+                  type="button"
+                  name="previous"
+                  class="previous action-button-previous"
+                  value="Previous"
+                />
+              </fieldset>
+
+
+
+              <fieldset>
+                <div class="form-card">
+                  <div class="row">
+                    <div class="col-7">
+                      <h2 class="fs-title"><b>Address Information:</b></h2>
+                    </div>
+                    <div class="col-5">
+                      <h2 class="steps">Step 4 / 5</h2>
+                    </div>
+                  </div>
+                  <label class="fieldlabels">Local Address: *</label>
+                  <input id="localaddress" type="text" name="localaddress" placeholder="Local Address"/>
+                  <label class="fieldlabels">State: *</label>
+                  <input id="localstate" type="text" name="localstate" placeholder="state" />
+                  <label class="fieldlabels">City: *</label>
+                  <input id="localcity" type="text" name="localcity" placeholder="City"/>
+                  <label class="fieldlabels">Permanent Address: *</label>
+                  <input id="permanentaddress" type="text" name="permanentaddress" placeholder="Permanent Address"/>
+                  <label class="fieldlabels">State: *</label>
+                  <input id="permanentstate" type="text" name="permanentstate" placeholder="state"/>
+                  <label class="fieldlabels">City: *</label>
+                  <input id="permanentcity" type="text" name="permanentcity" placeholder="City"/>
+                  <label class="fieldlabels">What other courses are you doing right now?: *</label>
+                  <textarea name="q1" id="q1" cols="30" rows="3"></textarea>
+                  <label class="fieldlabels">What is your ambition in next five years?: *</label>
+                  <textarea name="q2" id="q2" cols="30" rows="3"></textarea>
+                  <label class="fieldlabels">Why do you want to pursue your career in I.T. sector? Narrate an incident which made you to decide to be in the sector: *</label>
+                  <textarea name="q3" id="q3" cols="30" rows="3"></textarea>
+                  <label class="fieldlabels">Write about yourself and your company?: *</label>
+                  <textarea name="q4" id="q4" cols="30" rows="3"></textarea>
+                  <label class="fieldlabels">Write your commitments in the family and expectations your parents?: *</label>
+                  <textarea name="q5" id="q5" cols="30" rows="3"></textarea>
+                  <label class=""><input type="checkbox" value="true" name="acc">I do hereby declare that all the information given about is true to the best of my knowledge and beliefs</label>
+                </div>
+
+                <input
+                  type="submit"
+                  id="form3"
+                  disabled="true"
+                  name="next"
+                  class="next action-button"
+                  value="Submit"
+                />
+                <input
+                  type="button"
+                  name="previous"
+                  class="previous action-button-previous"
+                  value="Previous"
+                />
+              </fieldset>
+
+              <fieldset>
+                <div class="form-card">
+                  <div class="row">
+                    <div class="col-7">
+                      <h2 class="fs-title">Finish:</h2>
+                    </div>
+                    <div class="col-5">
+                      <h2 class="steps">Step 5 / 5</h2>
+                    </div>
+                  </div>
+                  <br /><br />
+                  <h2 class="purple-text text-center">
+                    <strong>SUCCESS !</strong>
+                  </h2>
+                  <br />
+                  <div class="row justify-content-center">
+                    <div class="col-3">
+                      <img src="tick.png" class="fit-image" />
+                    </div>
+                  </div>
+                  <br /><br />
+                  <div class="row justify-content-center">
+                    <div class="col-7 text-center">
+                      <h5 class="purple-text text-center">
+                        You Have Successfully Registered you have to wait for
+                        approval.
+                      </h5>
+                    </div>
+                  </div>
+                </div>
+              </fieldset>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script type="text/javascript">
+      $(document).ready(function () {
+        var current_fs, next_fs, previous_fs; //fieldsets
+        var opacity;
+        var current = 1;
+        var steps = $("fieldset").length;
+        setProgressBar(current);
+        $(".next").click(function () {
+          current_fs = $(this).parent();
+          next_fs = $(this).parent().next();
+          //Add Class Active
+          $("#progressbar li")
+            .eq($("fieldset").index(next_fs))
+            .addClass("active");
+          //show the next fieldset
+          next_fs.show();
+          //hide the current fieldset with style
+          current_fs.animate(
+            { opacity: 0 },
+            {
+              step: function (now) {
+                // for making fielset appear animation
+                opacity = 1 - now;
+                current_fs.css({
+                  display: "none",
+                  position: "relative",
+                });
+                next_fs.css({ opacity: opacity });
+              },
+              duration: 500,
+            }
+          );
+          setProgressBar(++current);
+        });
+        $(".previous").click(function () {
+          current_fs = $(this).parent();
+          previous_fs = $(this).parent().prev();
+          //Remove class active
+          $("#progressbar li")
+            .eq($("fieldset").index(current_fs))
+            .removeClass("active");
+          //show the previous fieldset
+          previous_fs.show();
+          //hide the current fieldset with style
+          current_fs.animate(
+            { opacity: 0 },
+            {
+              step: function (now) {
+                // for making fielset appear animation
+                opacity = 1 - now;
+                current_fs.css({
+                  display: "none",
+                  position: "relative",
+                });
+                previous_fs.css({ opacity: opacity });
+              },
+              duration: 500,
+            }
+          );
+          setProgressBar(--current);
+        });
+        function setProgressBar(curStep) {
+          var percent = parseFloat(100 / steps) * curStep;
+          percent = percent.toFixed();
+          $(".progress-bar").css("width", percent + "%");
+        }
+        $(".submit").click(function () {
+          return false;
+        });
+      });
+    </script>
+    <script>
+      let pss=new Array();
+      pss=document.querySelectorAll('.pss');
+      // console.log(pass);
+      const date=new Date();
+      const year=date.getFullYear();
+      let a="";
+      for(let i=year;i>year-22;i--){
+         a+=`<option>${i}</option>`
+      }
+      for(let i=0;i<pss.length;i++){
+        pss[i].innerHTML=a;
+      }
+
+
+      let regex= new Array();
+      regex=[
+      /^(?=.{1,50}$)[a-z]*$/i ,
+      /^(?=.{1,50}$)[a-z]*$/i ,
+      /^(?=.{1,50}$)[a-z]*$/i ,
+      // DOB
+      /^M(ale)?$|^F(emale)?$/i ,
+      /^M(arried)?$|^U(nmarried)?$/i ,
+      /^\d{1,7}(?:,\d{7})*$/i ,
+      /[a-z0-9]+@[a-z]+\.[a-z]{2,3}/i ,
+      /^\(?\d{3}\)?[\s.-]?\d{3}[\s.-]?\d{4}$/i  ,
+      /^\(?\d{3}\)?[\s.-]?\d{3}[\s.-]?\d{4}$/i  ,
+
+      /^S(tateBoard)?$|^C(BSC)?$|^I(CSC)?$/i  ,
+      /([A-Z][^\s,.]+[.]?\s[(]?)*(College|University|Institute|Law School|School of|Academy)/i,
+      /(?:(?:199)[0-9]{1}|(?:200)[0-9]{1}|(?:201)[0-9]{1}|(?:202)[0-2]{1})/i ,
+      /^[3-9]?[3-9]{1}$|^100$/i ,
+      /^S(tateBoard)?$|^C(BSC)?$|^I(CSC)?$/i  ,
+      /([A-Z][^\s,.]+[.]?\s[(]?)*(College|University|Institute|Law School|School of|Academy)/i,
+      /(?:(?:199)[0-9]{1}|(?:200)[0-9]{1}|(?:201)[0-9]{1}|(?:202)[0-2]{1})/i ,
+      /^[3-9]?[3-9]{1}$|^100$/i ,
+      /([A-Z][^\s,.]+[.]?\s[(]?)*(University)/i ,
+      /([A-Z][^\s,.]+[.]?\s[(]?)*(College|Institute|Law School|School of|Academy)/i,
+      /(?:(?:199)[0-9]{1}|(?:200)[0-9]{1}|(?:201)[0-9]{1}|(?:202)[0-2]{1})/i,
+      /^[3-9]?[3-9]{1}$|^100$/i ,
+      /([A-Z][^\s,.]+[.]?\s[(]?)*(University)/i ,
+      /([A-Z][^\s,.]+[.]?\s[(]?)*(College|Institute|Law School|School of|Academy)/i,
+      /(?:(?:199)[0-9]{1}|(?:200)[0-9]{1}|(?:201)[0-9]{1}|(?:202)[0-2]{1})/i,
+      /^[3-9]?[3-9]{1}$|^100$/i ,
+      //Image
+
+
+      /^[#.0-9a-zA-Z\s,-]+$/i ,
+      /([a-zA-Z]+|[a-zA-Z]+\\s[a-zA-Z]+)/i ,
+      /([a-zA-Z]+|[a-zA-Z]+\\s[a-zA-Z]+)/i ,
+      /^[#.0-9a-zA-Z\s,-]+$/i ,
+      /([a-zA-Z]+|[a-zA-Z]+\\s[a-zA-Z]+)/i ,
+      /([a-zA-Z]+|[a-zA-Z]+\\s[a-zA-Z]+)/i ,
+      /^(?:\\b\w+\\b[\s\r\n]*){0,100}$/i  ,
+      /^(?:\\b\w+\\b[\s\r\n]*){0,100}$/i  ,
+      /^(?:\\b\w+\\b[\s\r\n]*){0,100}$/i  ,
+      /^(?:\\b\w+\\b[\s\r\n]*){0,100}$/i  ,
+      /^(?:\\b\w+\\b[\s\r\n]*){0,100}$/i  ,
+      ]
+
+
+      // ------------------form 1-------------------------------
+      //**********************************************************
+      //********************************************
+
+
+
+      let check1={firstname:"false",lname:"false",fathername:"false",annualincome:"false",email:"false",contact:"false",alternatecontact:"false",};
+      function check()
+      {
+        let count=0;
+        for(let i in check1)
+        {
+          if(check1[i]!='true')
+          {
+            console.log(check1[i]);
+            console.log(check1)
+            count++;
+          }
+        }
+        console.log(Object.keys(check1).length);
+          if(count==0)
+          {
+            console.log(`neer`);
+            document.getElementById('form1').disabled = false;
+            console.log(`pallavi`);
+          }
+      }
+
+
+
+      document.getElementById("firstname").addEventListener("blur", function() 
+      {
+        let firstname = document.getElementById('firstname').value;
+        if(!(firstname.match(/^(?=.{3,50}$)[a-z]*$/i))) 
+        {
+          this.style.border = "1px solid red";
+          check1.firstname="false";
+          check();
+        } 
+        else
+        {
+          this.style.border = "1px solid green";
+          check1.firstname="true";
+          check();
+        }
+      })
+
+      document.getElementById("lname").addEventListener("blur", function() 
+      {
+        let lname = document.getElementById('lname').value;
+        if(!(lname.match(/^(?=.{3,50}$)[a-z]*$/i))) 
+        {
+          this.style.border = "1px solid red";
+          check1.lname="false";
+          check();
+        } 
+        else
+        {
+          this.style.border = "1px solid green";
+          check1.lname="true";
+          check();
+        }
+      })
+
+
+      document.getElementById("fathername").addEventListener("blur", function() 
+      {
+        let fathername = document.getElementById('fathername').value;
+        if(!(fathername.match(/^(?=.{3,50}$)[a-z]*$/i))) 
+        {
+          this.style.border = "1px solid red";
+          check1.fathername="false";
+          check();
+        } 
+        else
+        {
+          this.style.border = "1px solid green";
+          check1.fathername="true";
+          check();
+        }
+      })
+
+
+      // document.getElementById("gender").addEventListener("blur", function() 
+      // {
+      //   let gender = document.getElementById('gender').value;
+      //   if(!(gender.match(/^M(ale)?$|^F(emale)?$/i))) 
+      //   {
+      //     this.style.border = "1px solid red";
+      //     check1.gender="false";
+      //     check();
+      //   } 
+      //   else
+      //   {
+      //     this.style.border = "1px solid green";
+      //     check1.gender="true";
+      //     check();
+      //   }
+      // })
+
+
+      // document.getElementById("maritialstatus").addEventListener("blur", function() 
+      // {
+      //   let maritialstatus = document.getElementById('maritialstatus').value;
+      //   if(!(maritialstatus.match(/^M(arried)?$|^U(nmarried)?$/i))) 
+      //   {
+      //     this.style.border = "1px solid red";
+      //     check1.maritialstatus="false";
+      //     check();
+      //   } 
+      //   else
+      //   {
+      //     this.style.border = "1px solid green";
+      //     check1.maritialstatus="true";
+      //     check();
+      //   }
+      // })
+
+
+      document.getElementById("annualincome").addEventListener("blur", function() 
+      {
+        let annualincome = document.getElementById('annualincome').value;
+        if(!(annualincome.match(/^\d{1}(?:,\d{1})*$/i))) 
+        {
+          this.style.border = "1px solid red";
+          check1.annualincome="false";
+          check();
+        } 
+        else
+        {
+          this.style.border = "1px solid green";
+          check1.annualincome="true";
+          check();
+        }
+      })
+
+
+      document.getElementById("email").addEventListener("blur", function() 
+      {
+        let email = document.getElementById('email').value;
+        if(!(email.match(/[a-z0-9]+@[a-z]+\.[a-z]{2,3}/i))) 
+        {
+          this.style.border = "1px solid red";
+          check1.email="false";
+          check();
+        } 
+        else
+        {
+          this.style.border = "1px solid green";
+          check1.email="true";
+          check();
+        }
+      })
+
+
+      document.getElementById("contact").addEventListener("blur", function() 
+      {
+        let contact = document.getElementById('contact').value;
+        if(!(contact.match(/^\(?\d{3}\)?[\s.-]?\d{3}[\s.-]?\d{4}$/i))) 
+        {
+          this.style.border = "1px solid red";
+          check1.contact="false";
+          check();
+        } 
+        else
+        {
+          this.style.border = "1px solid green";
+          check1.contact="true";
+          check();
+        }
+      })
+  
+      document.getElementById("alternatecontact").addEventListener("blur", function() 
+      {
+        let alternatecontact = document.getElementById('alternatecontact').value;
+        if(!(alternatecontact.match(/^\(?\d{3}\)?[\s.-]?\d{3}[\s.-]?\d{4}$/i))) 
+        {
+          this.style.border = "1px solid red";
+          check1.alternatecontact="false";
+          check();
+        } 
+        else
+        {
+          this.style.border = "1px solid green";
+          check1.alternatecontact="true";
+          check();
+        }
+      })
+
+      //------------------------------------------------------
+      // ------------------form 2-------------------------------
+      //---------------------------------------------------------
+
+      let check2={
+      school10:"false",per10:"false",
+      school12:"false",per12:"false",
+      universityUG:"false",collegeUG:"false",perUG:"false",
+      universityPG:"false",collegePG:"false",perPG:"false",
+    };
+      function checkk()
+      {
+        let countt=0;
+        for(let i in check2)
+        {
+          if(check2[i]!='true')
+          {
+            console.log(check2[i]);
+            console.log(check2)
+            countt++;
+          }
+        }
+        console.log(Object.keys(check2).length);
+          if(countt==0)
+          {
+            console.log(`neer`);
+            document.getElementById('form2').disabled = false;
+            console.log(`pallavi`);
+          }
+      }
+
+
+
+
+      // document.getElementById("board10").addEventListener("blur", function() 
+      // {
+      //   let board10 = document.getElementById('board10').value;
+      //   if(!(board10.match(/^S(tateBoard)?$|^C(BSC)?$|^I(CSC)?$/i))) 
+      //   {
+      //     this.style.border = "1px solid red";
+      //     check2.board10="false";
+      //     checkk();
+      //   } 
+      //   else
+      //   {
+      //     this.style.border = "1px solid green";
+      //     check2.board10="true";
+      //     checkk();
+      //   }
+      // })
+
+
+      document.getElementById("school10").addEventListener("blur", function() 
+      {
+        let school10 = document.getElementById('school10').value;
+        if(!(school10.match(/^(?=.{3,50}$)[a-z]*$/i))) 
+        {
+          this.style.border = "1px solid red";
+          check2.school10="false";
+          checkk();
+        } 
+        else
+        {
+          this.style.border = "1px solid green";
+          check2.school10="true";
+          checkk();
+        }
+      })
+
+
+      // document.getElementById("pass10").addEventListener("blur", function() 
+      // {
+      //   let pass10 = document.getElementById('pass10').value;
+      //   if(!(pass10.match(/(?:(?:199)[0-9]{1}|(?:200)[0-9]{1}|(?:201)[0-9]{1}|(?:202)[0-2]{1})/i))) 
+      //   {
+      //     this.style.border = "1px solid red";
+      //     check2.pass10="false";
+      //     checkk();
+      //   } 
+      //   else
+      //   {
+      //     this.style.border = "1px solid green";
+      //     check2.pass10="true";
+      //     checkk();
+      //   }
+      // })
+
+
+      document.getElementById("per10").addEventListener("blur", function() 
+      {
+        let per10 = document.getElementById('per10').value;
+        if(!(per10.match(/^[3-9]?[3-9]{1}$|^100$/i ))) 
+        {
+          this.style.border = "1px solid red";
+          check2.per10="false";
+          checkk();
+        } 
+        else
+        {
+          this.style.border = "1px solid green";
+          check2.per10="true";
+          checkk();
+        }
+      })
+
+
+      // document.getElementById("board12").addEventListener("blur", function() 
+      // {
+      //   let board12 = document.getElementById('board12').value;
+      //   if(!(board12.match(/^S(tateBoard)?$|^C(BSC)?$|^I(CSC)?$/i))) 
+      //   {
+      //     this.style.border = "1px solid red";
+      //     check2.board12="false";
+      //     checkk();
+      //   } 
+      //   else
+      //   {
+      //     this.style.border = "1px solid green";
+      //     check2.board12="true";
+      //     checkk();
+      //   }
+      // })
+
+
+      document.getElementById("school12").addEventListener("blur", function() 
+      {
+        let school12 = document.getElementById('school12').value;
+        if(!(school12.match(/^(?=.{3,50}$)[a-z]*$/i))) 
+        {
+          this.style.border = "1px solid red";
+          check2.school12="false";
+          checkk();
+        } 
+        else
+        {
+          this.style.border = "1px solid green";
+          check2.school12="true";
+          checkk();
+        }
+      })
+
+
+      // document.getElementById("pass12").addEventListener("blur", function() 
+      // {
+      //   let pass12 = document.getElementById('pass12').value;
+      //   if(!(pass12.match(/(?:(?:199)[0-9]{1}|(?:200)[0-9]{1}|(?:201)[0-9]{1}|(?:202)[0-2]{1})/i))) 
+      //   {
+      //     this.style.border = "1px solid red";
+      //     check2.pass12="false";
+      //     checkk();
+      //   } 
+      //   else
+      //   {
+      //     this.style.border = "1px solid green";
+      //     check2.pass12="true";
+      //     checkk();
+      //   }
+      // })
+
+
+      document.getElementById("per12").addEventListener("blur", function() 
+      {
+        let per12 = document.getElementById('per12').value;
+        if(!(per12.match(/^[3-9]?[3-9]{1}$|^100$/i ))) 
+        {
+          this.style.border = "1px solid red";
+          check2.per12="false";
+          checkk();
+        } 
+        else
+        {
+          this.style.border = "1px solid green";
+          check2.per12="true";
+          checkk();
+        }
+      })
+
+
+      document.getElementById("universityUG").addEventListener("blur", function() 
+      {
+        let universityUG = document.getElementById('universityUG').value;
+        if(!(universityUG.match(/^(?=.{3,50}$)[a-z]*$/i))) 
+        {
+          this.style.border = "1px solid red";
+          check2.universityUG="false";
+          checkk();
+        } 
+        else
+        {
+          this.style.border = "1px solid green";
+          check2.universityUG="true";
+          checkk();
+        }
+      })
+
+
+      document.getElementById("collegeUG").addEventListener("blur", function() 
+      {
+        let collegeUG = document.getElementById('collegeUG').value;
+        if(!(collegeUG.match(/^(?=.{3,50}$)[a-z]*$/i))) 
+        {
+          this.style.border = "1px solid red";
+          check2.collegeUG="false";
+          checkk();
+        } 
+        else
+        {
+          this.style.border = "1px solid green";
+          check2.collegeUG="true";
+          checkk();
+        }
+      })
+
+
+      // document.getElementById("passUG").addEventListener("blur", function() 
+      // {
+      //   let passUG = document.getElementById('passUG').value;
+      //   if(!(passUG.match(/(?:(?:199)[0-9]{1}|(?:200)[0-9]{1}|(?:201)[0-9]{1}|(?:202)[0-2]{1})/i))) 
+      //   {
+      //     this.style.border = "1px solid red";
+      //     check2.passUG="false";
+      //     checkk();
+      //   } 
+      //   else
+      //   {
+      //     this.style.border = "1px solid green";
+      //     check2.passUG="true";
+      //     checkk();
+      //   }
+      // })
+
+
+      document.getElementById("perUG").addEventListener("blur", function() 
+      {
+        let perUG = document.getElementById('perUG').value;
+        if(!(perUG.match(/^[3-9]?[3-9]{1}$|^100$/i ))) 
+        {
+          this.style.border = "1px solid red";
+          check2.perUG="false";
+          checkk();
+        } 
+        else
+        {
+          this.style.border = "1px solid green";
+          check2.perUG="true";
+          checkk();
+        }
+      })
+
+
+
+
+      document.getElementById("universityPG").addEventListener("blur", function() 
+      {
+        let universityPG = document.getElementById('universityPG').value;
+        if(!(universityPG.match(/^(?=.{3,50}$)[a-z]*$/i))) 
+        {
+          this.style.border = "1px solid red";
+          check2.universityPG="false";
+          checkk();
+        } 
+        else
+        {
+          this.style.border = "1px solid green";
+          check2.universityPG="true";
+          checkk();
+        }
+      })
+
+
+      document.getElementById("collegePG").addEventListener("blur", function() 
+      {
+        let collegePG = document.getElementById('collegePG').value;
+        if(!(collegePG.match(/^(?=.{3,50}$)[a-z]*$/i))) 
+        {
+          this.style.border = "1px solid red";
+          check2.collegePG="false";
+          checkk();
+        } 
+        else
+        {
+          this.style.border = "1px solid green";
+          check2.collegePG="true";
+          checkk();
+        }
+      })
+
+
+      // document.getElementById("passPG").addEventListener("blur", function() 
+      // {
+      //   let passPG = document.getElementById('passPG').value;
+      //   if(!(passPG.match(/(?:(?:199)[0-9]{1}|(?:200)[0-9]{1}|(?:201)[0-9]{1}|(?:202)[0-2]{1})/i))) 
+      //   {
+      //     this.style.border = "1px solid red";
+      //     check2.passPG="false";
+      //     checkk();
+      //   } 
+      //   else
+      //   {
+      //     this.style.border = "1px solid green";
+      //     check2.passPG="true";
+      //     checkk();
+      //   }
+      // })
+
+
+      document.getElementById("perPG").addEventListener("blur", function() 
+      {
+        let perPG = document.getElementById('perPG').value;
+        if(!(perPG.match(/^[3-9]?[3-9]{1}$|^100$/i ))) 
+        {
+          this.style.border = "1px solid red";
+          check2.perPG="false";
+          checkk();
+        } 
+        else
+        {
+          this.style.border = "1px solid green";
+          check2.perPG="true";
+          checkk();
+        }
+      })
+
+
+
+
+
+      //------------------------------------------------------
+      // ------------------form 4-------------------------------
+      //---------------------------------------------------------
+
+
+      let check3={localaddress:"false",localstate:"false",localcity:"false",permanentaddress:"false",permanentstate:"false",permanentcity:"false",
+      
+    };
+      function checkkk()
+      {
+        let counttt=0;
+        for(let i in check3)
+        {
+          if(check3[i]!='true')
+          {
+            console.log(check3[i]);
+            console.log(check3)
+            counttt++;
+          }
+        }
+        console.log(Object.keys(check3).length);
+          if(counttt==0)
+          {
+            console.log(`neer`);
+            document.getElementById('form3').disabled = false;
+            console.log(`pallavi`);
+          }
+      }
+
+
+
+
+
+
+      document.getElementById("localaddress").addEventListener("blur", function() 
+      {
+        let localaddress = document.getElementById('localaddress').value;
+        if(!(localaddress.match(/^[#.0-9a-zA-Z\s,-]+$/i))) 
+        {
+          this.style.border = "1px solid red";
+          check3.localaddress="false";
+          checkkk();
+        } 
+        else
+        {
+          this.style.border = "1px solid green";
+          check3.localaddress="true";
+          checkkk();
+        }
+      })
+
+      document.getElementById("localstate").addEventListener("blur", function() 
+      {
+        let localstate = document.getElementById('localstate').value;
+        if(!(localstate.match(/([a-zA-Z]+|[a-zA-Z]+\\s[a-zA-Z]+)/i))) 
+        {
+          this.style.border = "1px solid red";
+          check3.localstate="false";
+          checkkk();
+        } 
+        else
+        {
+          this.style.border = "1px solid green";
+          check3.localstate="true";
+          checkkk();
+        }
+      })
+
+      document.getElementById("localcity").addEventListener("blur", function() 
+      {
+        let localcity = document.getElementById('localcity').value;
+        if(!(localcity.match(/([a-zA-Z]+|[a-zA-Z]+\\s[a-zA-Z]+)/i))) 
+        {
+          this.style.border = "1px solid red";
+          check3.localcity="false";
+          checkkk();
+        } 
+        else
+        {
+          this.style.border = "1px solid green";
+          check3.localcity="true";
+          checkkk();
+        }
+      })
+
+
+      document.getElementById("permanentaddress").addEventListener("blur", function() 
+      {
+        let permanentaddress = document.getElementById('permanentaddress').value;
+        if(!(permanentaddress.match(/^[#.0-9a-zA-Z\s,-]+$/i))) 
+        {
+          this.style.border = "1px solid red";
+          check3.permanentaddress="false";
+          checkkk();
+        } 
+        else
+        {
+          this.style.border = "1px solid green";
+          check3.permanentaddress="true";
+          checkkk();
+        }
+      })
+
+
+      document.getElementById("permanentstate").addEventListener("blur", function() 
+      {
+        let permanentstate = document.getElementById('permanentstate').value;
+        if(!(permanentstate.match(/([a-zA-Z]+|[a-zA-Z]+\\s[a-zA-Z]+)/i))) 
+        {
+          this.style.border = "1px solid red";
+          check3.permanentstate="false";
+          checkkk();
+        } 
+        else
+        {
+          this.style.border = "1px solid green";
+          check3.permanentstate="true";
+          checkkk();
+        }
+      })
+
+
+      document.getElementById("permanentcity").addEventListener("blur", function() 
+      {
+        let permanentcity = document.getElementById('permanentcity').value;
+        if(!(permanentcity.match(/([a-zA-Z]+|[a-zA-Z]+\\s[a-zA-Z]+)/i))) 
+        {
+          this.style.border = "1px solid red";
+          check3.permanentcity="false";
+          checkkk();
+        } 
+        else
+        {
+          this.style.border = "1px solid green";
+          check3.permanentcity="true";
+          checkkk();
+        }
+      })
+
+
+      
+
+    </script>
+    <%- include('../partials/scripts')  %>
+
+  </body>
+</html>

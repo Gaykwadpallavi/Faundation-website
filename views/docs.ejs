@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <%- include('../partials/links')  %>
+</head>
+<body>
+    <div class="col-md-8 m-auto">
+        <form action="/docsupload" method="post" enctype="multipart/form-data">
+            <input type="text" name="email" value="<%= email%>">
+            <label for="" class="form-label">Please upload your:<br>photo <br> adhaar card <br>fatheer's adhaar card <br>12th marksheet<br>recently passout<br>samagra id<br>income certificate </label>
+            <input type="file" name="pics" id="" class="form-control" multiple>
+            <input type="submit" name="" id="" class="btn btn-primary">
+        </form> 
+       </div>
+</body>
+</html>
